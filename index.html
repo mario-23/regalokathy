@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carta con Corazón</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f8bbd0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: "Georgia", serif;
+      overflow: hidden;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      z-index: 2;
+    }
+
+    .buttons a {
+      background-color: #ec407a;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background-color: #f06292;
+    }
+
+    .card-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+    }
+
+    .card {
+      width: 500px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .card h1 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .card p {
+      line-height: 1.6;
+      margin: 15px 0;
+    }
+
+    .card .footer {
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    .heart {
+      margin-top: 20px;
+      cursor: pointer;
+      animation: beat 1.5s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .heart img {
+      width: 80px;
+      transition: transform 0.3s;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div class="buttons">
+    <a href="regalo1.html">Corazoncito</a>
+    <a href="regalo2.html">My love</a>
+    <a href="regalo3.html">Tulipan</a>
+  </div>
+
+  
+  <div class="card-container">
+    <div class="card" id="carta">
+      <h1>Querida Kathy</h1>
+      <p>
+      Hola mi amor este detalle es para ti, esta hecho con mucho amor y dedicacion, espero te guste mi reina, como podras ver tienes tres botoncitos arriba puedes acceder a cada uno de ellos y te llevara a algo diferente a esta pagina de inicio.
+      </p>
+      <p>
+       Te amo con todo mi corazon, no sabes lo feliz que me haces y en vrd lo mucho que quiero estar contigo para toda la vida, quien lo diria que estamos aqui despues de un añito juntos, creeme que es un gran logro para mi al estar contigo pq eso demuestra nuestro amor, nuestro esfuerzo, nuestra dedicacion, nuestra valentia para cada reto, creeme que he disfrutado estos 11 meses a tu lado han sido los mejores de mi vid, gracias por ser una mujer magnifica, TE AMO.
+      </p>
+      <p class="footer">De: Gordito<br>Para: Mi guerita</p>
+    </div>
+
+    
+    <div class="heart" onclick="toggleCarta()">
+      <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Heart">
+    </div>
+  </div>
+
+  <script>
+    function toggleCarta() {
+      const carta = document.getElementById("carta");
+      carta.classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>

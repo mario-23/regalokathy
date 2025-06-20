@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tulipán Pixelart</title>
+  <style>
+    body {
+      background-color: #222;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+
+    .buttons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+
+    .buttons a {
+      background-color: #ff69b4;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background-color: #ff85c1;
+    }
+
+    canvas {
+      background-color: #333;
+      margin-top: 150px;
+    }
+
+    .mensaje {
+      margin-top: 20px;
+      color: rgb(245, 245, 245);
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botón de Inicio -->
+  <div class="buttons">
+    <a href="index.html">🏠 Inicio</a>  
+  </div>
+
+  <!-- Canvas del tulipán -->
+  <canvas id="canvas" width="240" height="320"></canvas>
+
+  <!-- Mensaje de dedicatoria -->
+  <p class="mensaje">Este tulipán es para ti &lt;3</p>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const pixelSize = 20;
+
+    const tulip = [
+      [0,0,0,0,1,0,1,0,0,0,0],
+      [0,0,0,0,2,1,2,0,0,0,0],
+      [0,0,0,0,2,2,2,0,0,0,0],
+      [0,0,0,0,0,2,0,0,0,0,0],
+      [0,4,3,0,0,3,0,4,0,0,0],
+      [0,0,4,4,0,3,0,4,4,0,0],
+      [0,0,3,3,0,3,0,4,3,0,0],
+      [0,0,4,3,0,3,3,4,3,0,0],
+      [0,0,4,3,3,3,3,4,0,0,0],
+      [0,0,0,3,4,3,4,3,0,0,0],
+      [0,0,0,3,4,3,4,0,0,0,0],
+      [0,0,0,0,4,3,4,0,0,0,0],
+      [0,0,0,0,0,3,0,0,0,0,0],
+      [0,0,0,5,5,5,5,5,0,0,0],
+      [0,0,0,5,5,5,5,5,0,0,0],
+      [0,0,0,5,5,5,5,5,0,0,0],
+    ];
+
+    const colors = {
+      0: "#444",       // fondo
+      1: "#ffd1dc",    // rosa claro
+      2: "#ff69b4",    // rosa oscuro
+      3: "#00cc00",    // verde claro
+      4: "#007700",    // verde oscuro
+      5: "#cc0000",    // rojo (maceta)
+      6: "#8b4513",    // marrón (bordes de maceta)
+    };
+
+    const numRows = tulip.length;
+    const numCols = tulip[0].length;
+
+    const totalWidth = numCols * pixelSize;
+    const totalHeight = numRows * pixelSize;
+
+    const offsetX = (canvas.width - totalWidth) / 2;
+    const offsetY = (canvas.height - totalHeight) / 2;
+
+    function drawPixelArt() {
+      for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
+          const val = tulip[row][col];
+          ctx.fillStyle = colors[val];
+          ctx.fillRect(
+            offsetX + col * pixelSize,
+            offsetY + row * pixelSize,
+            pixelSize - 1,
+            pixelSize - 1
+          );
+        }
+      }
+    }
+
+    drawPixelArt();
+  </script>
+</body>
+</html>

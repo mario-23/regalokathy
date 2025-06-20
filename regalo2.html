@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>My Love Matrix</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: 'My Love', sans-serif;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .buttons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+
+    .buttons a {
+      background-color: #ff69b4;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-family: "Georgia", serif;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background-color: #ff85c1;
+    }
+
+    .Love__You {
+      color: #e6e6e6;
+      justify-content: center;
+      font-family: "Brush Script MT", cursive;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+      position: relative;
+      z-index: 5;
+      text-align: center;
+    }
+
+    .Love__You p {
+      font-size: 3rem;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botón de inicio -->
+  <div class="buttons">
+    <a href="index.html">🏠 Inicio</a>
+  </div>
+
+  <!-- Canvas con efecto Matrix -->
+  <canvas id="matrix"></canvas>
+
+  <!-- Mensaje de amor -->
+  <div class="Love__You">
+    <p>Te amodoro mi reina</p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    let letters = Array(256).join("My Love ").split("");
+    let fontSize = 14;
+    let columns = canvas.width / fontSize;
+    let drops = [];
+
+    for (let i = 0; i < columns; i++) {
+      drops[i] = 1;
+    }
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#ff69b4"; // Rosa fuerte
+      ctx.font = fontSize + "px Arial";
+
+      for (let i = 0; i < drops.length; i++) {
+        let text = "My Love";
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 50);
+  </script>
+</body>
+</html>

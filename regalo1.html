@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Corazón Animado</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: red;
+      font-family: "Brush Script MT", cursive;
+    }
+
+    canvas {
+      background-color: black;
+    }
+
+    p {
+      font-size: 45px;
+      margin-top: 20px;
+    }
+
+    .buttons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+
+    .buttons a {
+      background-color: red;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-family: "Georgia", serif;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background-color: #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botón de Inicio -->
+  <div class="buttons">
+    <a href="index.html">🏠 Inicio</a>  
+  </div>
+
+  <!-- Corazón animado -->
+  <canvas id="canvas" width="600" height="500"></canvas>
+  <p>I Love You My Kathy's</p>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "red";
+    ctx.fillStyle = "red";
+
+    let t = 0;
+
+    function drawHeart() {
+      let x = 300;
+      let y = 270;
+      let scale = 10;
+
+      let drawX = x + scale * 16 * Math.pow(Math.sin(t), 3);
+      let drawY = y - scale * (
+        13 * Math.cos(t) -
+        5 * Math.cos(2 * t) -
+        2 * Math.cos(3 * t) -
+        Math.cos(4 * t)
+      );
+
+      if (t === 0) {
+        ctx.beginPath();
+        ctx.moveTo(drawX, drawY);
+      } else {
+        ctx.lineTo(drawX, drawY);
+      }
+
+      t += 0.02;
+
+      if (t <= Math.PI * 2) {
+        requestAnimationFrame(drawHeart);
+      } else {
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      ctx.stroke();
+    }
+
+    drawHeart();
+  </script>
+
+</body>
+</html>
